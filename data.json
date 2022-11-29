@@ -1,0 +1,29 @@
+[
+   {
+      "title": "Civilización VI",
+      "description": "Juego de estrategia para PC",
+      "price": 800,
+      "code": "1234",
+      "thumbnail": "./img/CivilizacionVI.jpg",
+      "stock": 10,
+      "id": 1
+   },
+   {
+      "title": "Los Sims 4",
+      "description": "Juego de simulación social para PC.",
+      "price": 1500,
+      "code": "5678",
+      "thumbnail": "./img/TheSims4.jpg",
+      "stock": 5,
+      "id": 2
+   },
+   {
+      "title": "Dead Island",
+      "description": "Juego de zombies para PC.",
+      "price": 1300,
+      "code": "9101",
+      "thumbnail": "./img/DeadIsland.jpg",
+      "stock": 5,
+      "id": 3
+   }
+]
