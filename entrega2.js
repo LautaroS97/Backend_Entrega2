@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { threadId } = require("worker_threads");
 
 class ProductManagerFilesystem {
   
@@ -54,34 +55,55 @@ class ProductManagerFilesystem {
 
   }
 
-  //Aquí faltan las funciones para obtener por ID, actualizar el producto y eliminarlo.
-  /*async getProductsById(productId) {
-    try {
+  async getProductById(id) {
+    
+    const products = await this.getProducts();
 
-    }
-    catch (error) {
-      console.log(error);
-    }
+    const productFound = products.find((product) => product.id === id);
+
+    return productFound;
+
   }
 
-  async updateProductsById(productId) {
-    try {
-
-    }
-    catch (error) {
-      console.log(error);
-    }
+  #writeFile(data) {
+    return fs.promises.writeFile(this.path, JSON.stringify(data, null, 3))
   }
 
-  async deleteProductsById(productId) {
-    try {
+  async update(id, { title, description, price, code, thumbnail, stock }) {
 
-    }
-    catch (error) {
-      console.log(error);
-    }
-  }*/
+    const products = await this.getProducts();
 
+    const productIndex = products.findIndex(product => product.id === id);
+
+    if(productIndex === -1) {
+      return {error: "El producto no existe."}
+    }
+
+    const product = products[productIndex]
+
+    products[productIndex] = { ...product, ...newData};
+
+    await this.#writeFile(products);
+
+    return product[productIndex]
+  }
+
+  async deleteProduct(id) {
+    
+    const products = await this.getProducts()
+    
+    const productIndex = products.findIndex((product) => product.id === id);
+
+    if(productIndex === -1) { 
+      return {error: "El producto no existe."}
+    }
+
+    const deleteProducts = products.splice(productIndex, 1)
+
+    await this.#writeFile(products);
+
+    return deleteProducts[0];
+  }
 }
 
 const productsList = new ProductManagerFilesystem(path);
@@ -125,5 +147,7 @@ const testClass = async () => {
   console.log(allProducts);
 
 };
+
+productsList.deleteProduct(2);
 
 testClass();

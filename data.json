@@ -9,15 +9,6 @@
       "id": 1
    },
    {
-      "title": "Los Sims 4",
-      "description": "Juego de simulación social para PC.",
-      "price": 1500,
-      "code": "5678",
-      "thumbnail": "./img/TheSims4.jpg",
-      "stock": 5,
-      "id": 2
-   },
-   {
       "title": "Dead Island",
       "description": "Juego de zombies para PC.",
       "price": 1300,
